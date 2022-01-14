@@ -23,7 +23,7 @@ public class PersonManager {
         return result;
     }
 
-    public static Person getPerson(){ //buraya person id eklenecek ve kişiye göre sorgulama yapılacak.
+    public static Person getPerson(int id){ //buraya person id eklenecek ve kişiye göre sorgulama yapılacak.
         Person person = new Person();
         FileProcess fileProcess = new FileProcess();
 
@@ -31,7 +31,7 @@ public class PersonManager {
         int index = 0,index2 = 0;
 
         try{
-            personInfo = fileProcess.readFilePerson();
+            personInfo = fileProcess.readFilePerson(id);
 
             index = personInfo.indexOf("#");
             person.setId(Integer.parseInt(personInfo.substring(0,index)));
@@ -50,7 +50,7 @@ public class PersonManager {
 
         }
 
-        return null;
+        return person;
 
     }
 

@@ -6,7 +6,7 @@ import com.HappyCeng.Entity.ProcessResult;
 
 public class BankManager {
 
-    public static ProcessResult addBank(Bank bank){
+    public static ProcessResult addBank(Bank bank){ //file işleminin yapılması lazım. şuan eklenmiyor.
         ProcessResult result = new ProcessResult();
         FileProcess fileProcess = new FileProcess();
 

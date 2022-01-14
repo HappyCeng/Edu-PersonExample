@@ -1,6 +1,7 @@
 package com.HappyCeng.Manager;
 
 import com.HappyCeng.Entity.Bank;
+import com.HappyCeng.Entity.BusCard;
 import com.HappyCeng.Entity.Person;
 import com.HappyCeng.Entity.ProcessResult;
 
@@ -38,7 +39,7 @@ public class ProcessVM {
         try{
             bank.setId(person.getId());
 
-            bankManager.addBank(bank);
+            result = bankManager.addBank(bank);
 
             if(result.isSuccess()){
                 result.setSuccess(true);
@@ -52,12 +53,34 @@ public class ProcessVM {
         return result;
     }
 
-    public static Person getPersonInfo(){ //burayıda düzenlersiniz :)
+    public static Person getPersonInfo(int id){ //burayıda düzenlersiniz :)
         PersonManager personManager = new PersonManager();
         Person person = new Person();
 
-        person = personManager.getPerson();
+        person = personManager.getPerson(id);
 
         return person;
+    }
+
+    public static ProcessResult otobusKartEkle(Person person, BusCard busCard){
+        ProcessResult result = new ProcessResult();
+
+        BusCardManager busCardManager = new BusCardManager();
+
+        try {
+
+            busCard.setId(person.getId());
+
+            result = busCardManager.addBusCard(busCard);
+            if(result.isSuccess()){
+                result.setSuccess(true);
+                result.setResultMessage("Otobüs kartı başarıyla oluşturuldu.");
+            }
+        } catch (Exception e){
+            result.setSuccess(false);
+            result.setResultMessage("Error 3001 : " + e);
+        }
+
+        return null;
     }
 }
